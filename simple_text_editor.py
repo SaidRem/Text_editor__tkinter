@@ -20,7 +20,10 @@ def text_editor(root):
     txt_edit.grid(row=0, column=1, sticky="nsew")
 
 def open_file(txt_edit, root):
-    """Open file for editing"""
+    """Open file for editing
+    :param txt_edit: Text widget from tkinter.
+    :param root: Main window.
+    """
     filepath = askopenfilename(
         filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")]
     )
