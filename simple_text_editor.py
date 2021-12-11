@@ -11,7 +11,7 @@ def text_editor(root):
 
     fr_buttons = Frame(root)
     btn_open = Button(fr_buttons, text='OPEN', command=(lambda: open_file(txt_edit, root)))
-    btn_save = Button(fr_buttons, text='Save as...')
+    btn_save = Button(fr_buttons, text='Save as...', command=(lambda: save_file(txt_edit, root)))
 
     btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
     btn_save.grid(row=1, column=0, sticky="ew", padx=5)
@@ -25,7 +25,8 @@ def open_file(txt_edit, root):
     :param root: Main window.
     """
     filepath = askopenfilename(
-        filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")]
+        filetypes=[("Text Files", "*.txt"),
+                   ("All Files", "*.*")],
     )
 
     if not filepath:
@@ -37,6 +38,19 @@ def open_file(txt_edit, root):
         txt_edit.insert(END, text)
     root.title(f"Simple Text Editor - {filepath}")
 
+def save_file(txt_edit, root):
+    filepath = asksaveasfilename(
+        defaultextension="txt",
+        filetypes=[("Text Files", "*.txt"),
+                   ("All Files", "*.*")],
+    )
+    if not filepath:
+        return None
+    
+    with open(filepath, "w") as output_file:
+        text = txt_edit.get("1.0", END)
+        output_file.write(text)
+    root.title(f"Simple text editor - {filepath}")
 
 
 if __name__ == '__main__':
