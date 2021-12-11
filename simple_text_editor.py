@@ -10,8 +10,12 @@ def text_editor(root):
     txt_edit = Text(root)
 
     fr_buttons = Frame(root)
-    btn_open = Button(fr_buttons, text='OPEN', command=(lambda: open_file(txt_edit, root)))
-    btn_save = Button(fr_buttons, text='Save as...', command=(lambda: save_file(txt_edit, root)))
+    btn_open = Button(fr_buttons,
+                      text='OPEN',
+                      command=(lambda: open_file(txt_edit, root)))
+    btn_save = Button(fr_buttons,
+                      text='Save as...',
+                      command=(lambda: save_file(txt_edit, root)))
 
     btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
     btn_save.grid(row=1, column=0, sticky="ew", padx=5)
@@ -39,6 +43,10 @@ def open_file(txt_edit, root):
     root.title(f"Simple Text Editor - {filepath}")
 
 def save_file(txt_edit, root):
+    """Save current file as new
+    :param txt_edit: Text widget from tkinter.
+    :param root: Main window.
+    """
     filepath = asksaveasfilename(
         defaultextension="txt",
         filetypes=[("Text Files", "*.txt"),
