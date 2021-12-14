@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.messagebox import *
 
 
 class Text_Editor(Frame):
@@ -8,6 +9,8 @@ class Text_Editor(Frame):
         self.makewidgets()
         if text:
             self.settext(text, file)
+        self.master.title('Text Editor')
+        self.menu_bar()
         
     def makewidgets(self):
         """Widgets for Text Editor."""
@@ -26,8 +29,22 @@ class Text_Editor(Frame):
         self.text.insert('1.0', text)
         self.text.mark_set(INSERT, '1.0')  # Set cursor insert.
         self.text.focus()                  # Mouse click on the text widget.
+    
+    def menu_bar(self):
+        self.menubar = Menu(self.master)
+        self.master.config(menu=self.menubar)
+        self.file_open_menu()
+    
+    def file_open_menu(self):
+        pulldown = Menu(self.menubar, tearoff=False)
+        pulldown.add_command(label='Open File', command=self.notdone)
+        pulldown.add_command(label='Save as...', command=self.notdone)
+        self.menubar.add_cascade(label='File', underline=0, menu=pulldown)
+    
+    def notdone(self):
+        showerror('Not implemented', 'Not available')
 
 if __name__ == '__main__':
-    root = Tk()
-    te = Text_Editor()
-    root.mainloop()
+    # root = Tk()
+    Text_Editor().mainloop()
+    # root.mainloop()
