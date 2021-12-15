@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter.messagebox import *
-
+from tkinter.filedialog import askopenfilename, asksaveasfilename
 
 class Text_Editor(Frame):
     def __init__(self, parent=None, text='', file=None):
@@ -37,9 +37,18 @@ class Text_Editor(Frame):
     
     def file_open_menu(self):
         pulldown = Menu(self.menubar, tearoff=False)
-        pulldown.add_command(label='Open File', command=self.notdone)
+        pulldown.add_command(label='Open File', command=self.open_file)
         pulldown.add_command(label='Save as...', command=self.notdone)
         self.menubar.add_cascade(label='File', underline=0, menu=pulldown)
+    
+    def open_file(self):
+        filepath = askopenfilename(
+            filetypes=[("Text Files", "*.txt"),
+                       ("All Files", "*.*")],
+        )
+        if filepath:
+            self.settext(file=filepath)
+                
     
     def notdone(self):
         showerror('Not implemented', 'Not available')
