@@ -42,8 +42,10 @@ class Text_Editor(Frame):
         self.menubar.add_cascade(label='File', underline=0, menu=pulldown)
     
     def open_file(self):
+        """Open File Explorer to select a file."""
         filepath = askopenfilename(
             filetypes=[("Text Files", "*.txt"),
+                       ("html", "*.html"),
                        ("All Files", "*.*")],
         )
         if filepath:
