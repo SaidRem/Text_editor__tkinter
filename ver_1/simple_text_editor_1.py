@@ -38,7 +38,7 @@ class Text_Editor(Frame):
     def file_open_menu(self):
         pulldown = Menu(self.menubar, tearoff=False)
         pulldown.add_command(label='Open File', command=self.open_file)
-        pulldown.add_command(label='Save as...', command=self.notdone)
+        pulldown.add_command(label='Save as...', command=self.save_file)
         self.menubar.add_cascade(label='File', underline=0, menu=pulldown)
     
     def open_file(self):
@@ -50,6 +50,20 @@ class Text_Editor(Frame):
         )
         if filepath:
             self.settext(file=filepath)
+    
+    def save_file(self):
+        filepath = asksaveasfilename(
+            defaultextension="txt",
+            filetypes=[("Text Files", "*.txt"),
+                       ("All Files", "*.*")],
+        )
+        if not filepath:
+            return None
+        else:
+            with open(filepath, "w") as output_file:
+                text = self.text.get("1.0", END)
+                output_file.write(text)
+            self.master.title(f"Simple text editor - {filepath}")
                 
     
     def notdone(self):
