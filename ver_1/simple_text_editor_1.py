@@ -52,6 +52,7 @@ class Text_Editor(Frame):
             self.settext(file=filepath)
     
     def save_file(self):
+        """Save current text in the editor as new."""
         filepath = asksaveasfilename(
             defaultextension="txt",
             filetypes=[("Text Files", "*.txt"),
