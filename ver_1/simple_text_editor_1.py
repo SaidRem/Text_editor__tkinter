@@ -34,12 +34,18 @@ class Text_Editor(Frame):
         self.menubar = Menu(self.master)
         self.master.config(menu=self.menubar)
         self.file_open_menu()
+        self.help_menu()
     
     def file_open_menu(self):
         pulldown = Menu(self.menubar, tearoff=False)
         pulldown.add_command(label='Open File', command=self.open_file)
         pulldown.add_command(label='Save as...', command=self.save_file)
         self.menubar.add_cascade(label='File', underline=0, menu=pulldown)
+    
+    def help_menu(self):
+        pulldown = Menu(self.menubar, tearoff=False)
+        pulldown.add_command(label="Help", command=self.notdone)
+        self.menubar.add_cascade(label="Help", underline=0, menu=pulldown)
     
     def open_file(self):
         """Open File Explorer to select a file."""
