@@ -71,6 +71,10 @@ class Text_Editor(Frame):
                 text = self.text.get("1.0", END)
                 output_file.write(text)
             self.master.title(f"Simple text editor - {filepath}")
+    
+    def help(self):
+        """Describe how to use the text editor."""
+        pass
                 
     
     def notdone(self):
